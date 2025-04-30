@@ -1,6 +1,10 @@
 import { Plus } from "lucide-react"
 
-export default function TaskForm() {
+interface TaskFormProps {
+    handleAddTask: () => void
+}
+
+export default function TaskForm({ handleAddTask }: TaskFormProps) {
     return (
         <form action="" method="post" className="flex flex-col gap-6 border-solid border-gray-200 border-2 m-10 p-10 rounded">
             <h2 className="font-bold text-xl">Nova Tarefa</h2>
@@ -20,7 +24,7 @@ export default function TaskForm() {
                     className="border-solid border-gray-200 border-2 rounded p-2 focus:outline-none"
                 ></textarea>
             </fieldset>
-            <button className="flex justify-center items-center py-2 mt-2 gap-2 bg-black text-white font-bold rounded hover:cursor-pointer" type="submit"><Plus color="white" size={16}/> Adicionar Tarefa</button>
+            <button onClick={handleAddTask} className="flex justify-center items-center py-2 mt-2 gap-2 bg-black text-white font-bold rounded hover:cursor-pointer" type="submit"><Plus color="white" size={16}/> Adicionar Tarefa</button>
         </form>
     )
 }
