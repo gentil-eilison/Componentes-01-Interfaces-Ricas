@@ -5,16 +5,16 @@ import TaskForm from "@/components/TaskForm";
 
 import { useState } from "react";
 
-interface Task {
+export interface Task {
     title: string,
-    body: string
+    description: string
 }
 
 export default function Home() {
   const [tasks, setTasks] = useState<Task[]>([]);
 
-  function addTask() {
-    setTasks([...tasks, {title: "Final Fantasy", body: "RPG baseado em turno"}])
+  function addTask(task: Task) {
+    setTasks([...tasks, task])
   }
 
   return (
@@ -25,9 +25,9 @@ export default function Home() {
       <TaskForm handleAddTask={addTask}/>
 
       <div id="task-list" className="grid grid-cols-2 gap-6 m-10">
-        <TaskCard title="Exemplo de tarefa" body="Esta é uma tarefa de exemplo. Você pode marcar como concluída, editar ou excluir."/>
-        <TaskCard title="teste" body="tsteste"/>
-        {tasks.map((task, idx) => <TaskCard key={idx} title={task.title} body={task.body}/>)}
+        <TaskCard title="Exemplo de tarefa" description="Esta é uma tarefa de exemplo. Você pode marcar como concluída, editar ou excluir."/>
+        <TaskCard title="teste" description="tsteste"/>
+        {tasks.map((task, idx) => <TaskCard key={idx} title={task.title} description={task.description}/>)}
       </div>
     </main>
   );

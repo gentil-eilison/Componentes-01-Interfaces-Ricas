@@ -2,11 +2,11 @@ import { SquarePen, Trash2 } from "lucide-react"
 
 
 interface TaskCardProps {
-    body: string,
+    description: string,
     title: string
 }
 
-export default function TaskCard({ body, title }: TaskCardProps) {
+export default function TaskCard({ description, title }: TaskCardProps) {
     return (
         <div className="border-solid border-2 border-gray-200 rounded gap-5 text-gray-500 p-8 w-lg">
             <header className="flex items-center justify-between mb-3">
@@ -19,7 +19,7 @@ export default function TaskCard({ body, title }: TaskCardProps) {
                     <Trash2 size={16} color="black" className="hover:cursor-pointer"/>
                 </div>
             </header>
-            {body}
+            {description}
         </div>
     )
 }
