@@ -23,6 +23,14 @@ export default function Home() {
     }); 
   }
 
+  function updateTask(taskIdx: number, updatedTask: Task) {
+    setTasks(prevState => {
+      return prevState.map((task, idx) => {
+        return idx == taskIdx ? { ...task, ...updatedTask } : task
+      })
+    });
+  }
+
   return (
     <main className="max-w-3/4 mx-auto">
       <header>
@@ -30,7 +38,7 @@ export default function Home() {
       </header>
       <TaskForm handleAddTask={addTask}/>
       <div id="task-list" className="grid grid-cols-2 gap-6 m-10">
-        {tasks.map((task, idx) => <TaskCard handleDelete={() => deleteTask(idx)} key={idx} title={task.title} description={task.description}/>)}
+        {tasks.map((task, idx) => <TaskCard handleUpdate={updateTask} idx={idx} handleDelete={() => deleteTask(idx)} key={idx} title={task.title} description={task.description}/>)}
       </div>
     </main>
   );
