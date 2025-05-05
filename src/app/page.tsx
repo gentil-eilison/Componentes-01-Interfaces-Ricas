@@ -17,17 +17,20 @@ export default function Home() {
     setTasks([...tasks, task])
   }
 
+  function deleteTask(taskIdx: number) {
+    setTasks(prevState => {
+      return prevState.filter((task, idx) => idx != taskIdx);
+    }); 
+  }
+
   return (
     <main className="max-w-3/4 mx-auto">
       <header>
         <h1 className="text-center text-2xl text-black font-bold">Lista de Tarefas</h1>
       </header>
       <TaskForm handleAddTask={addTask}/>
-
       <div id="task-list" className="grid grid-cols-2 gap-6 m-10">
-        <TaskCard title="Exemplo de tarefa" description="Esta é uma tarefa de exemplo. Você pode marcar como concluída, editar ou excluir."/>
-        <TaskCard title="teste" description="tsteste"/>
-        {tasks.map((task, idx) => <TaskCard key={idx} title={task.title} description={task.description}/>)}
+        {tasks.map((task, idx) => <TaskCard handleDelete={() => deleteTask(idx)} key={idx} title={task.title} description={task.description}/>)}
       </div>
     </main>
   );
